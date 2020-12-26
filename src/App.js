@@ -65,15 +65,17 @@ const App = () => {
     <div className = "App">
 
       {user ? (
-          <Pannel handleLogout={handleLogout}/>
+          <Pannel 
+            handleLogout={handleLogout}
+          />
       ) : (
           <Login 
-          pw={pw} 
-          setPw={setPw}
-          handleLogin={handleLogin}
-          hasAcc={hasAcc}
-          setHasAcc={setHasAcc}
-          pwError={pwError}
+            pw={pw} 
+            setPw={setPw}
+            handleLogin={handleLogin}
+            hasAcc={hasAcc}
+            setHasAcc={setHasAcc}
+            pwError={pwError}
         />
       )}  
     </div>
