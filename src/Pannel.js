@@ -26,35 +26,33 @@ const Pannel = ({handleLogout}) => {
 
         var carpark;
         var repo = postCode + "_" + semt + "_" + country;
-        var repoNum = dID;
-
-        /*fire.database().ref("CAR_PARKS/" + repo).on('value', snapshot => {
-            repoNum = snapshot.numChildren() + parseInt(dID);
-        });*/
+        var repoNum = 0;
 
         fire.database().ref("CAR_PARKS/" + repo).on('value', snapshot => {
             repoNum = snapshot.numChildren() + parseInt(dID);
         });
 
-        try {
-            carpark = {
-                capacity: parseInt(capacity),
-                coordinates: {
-                    latitude: parseFloat(latitude),
-                    longitude: parseFloat(longitude),
-                },
-                freeArea: parseInt(capacity),
-                generalid: postCode + "_" + semt + "_" + country + "-" + repoNum.toString(),
-                id: repoNum.toString(),
-                name: name,
-                phone: phone,
-                used: 0,
-            };
-        
-            fire.database().ref("CAR_PARKS/" + repo + "/" + repoNum).set(carpark);
+        if (parseInt(repoNum) >= 1000000) {
+            try {
+                carpark = {
+                    capacity: parseInt(capacity),
+                    coordinates: {
+                        latitude: parseFloat(latitude),
+                        longitude: parseFloat(longitude),
+                    },
+                    freeArea: parseInt(capacity),
+                    generalid: postCode + "_" + semt + "_" + country + "-" + repoNum.toString(),
+                    id: repoNum.toString(),
+                    name: name,
+                    phone: phone,
+                    used: 0,
+                };
             
-        } catch (error) {
-            console.log(error);
+                fire.database().ref("CAR_PARKS/" + repo + "/" + repoNum).set(carpark);
+                
+            } catch (error) {
+                console.log(error);
+            }
         }
 
         console.log(carpark);
