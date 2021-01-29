@@ -21,6 +21,7 @@ const Pannel = ({handleLogout}) => {
     const [latitude, setlatitude] = useState("");
     const [longitude, setlongitude] = useState("");
     const [capacity, setcapacity] = useState("");
+    const [price, setPrice] = useState("");
 
     const handleAddCarPark = () => {
 
@@ -36,16 +37,15 @@ const Pannel = ({handleLogout}) => {
             try {
                 carpark = {
                     capacity: parseInt(capacity),
-                    coordinates: {
-                        latitude: parseFloat(latitude),
-                        longitude: parseFloat(longitude),
-                    },
+                    latitude: parseFloat(latitude),
+                    longitude: parseFloat(longitude),
                     freeArea: parseInt(capacity),
                     generalid: postCode + "_" + semt + "_" + country + "-" + repoNum.toString(),
                     id: repoNum.toString(),
                     name: name,
                     phone: phone,
                     used: 0,
+                    price: parseFloat(price)
                 };
             
                 fire.database().ref("CAR_PARKS/" + repo + "/" + repoNum).set(carpark);
@@ -131,6 +131,14 @@ const Pannel = ({handleLogout}) => {
                     placeholder="Kapasite"
                     value={capacity}
                     onChange={(e) => setcapacity(e.target.value)}
+                />
+
+                <input type="text"
+                    autofocus
+                    required
+                    placeholder="Ücret (Dakika Başı)"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                 />
 
                 <button onClick={handleAddCarPark}>Ekle</button>
