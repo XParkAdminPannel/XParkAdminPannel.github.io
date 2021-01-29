@@ -21,7 +21,7 @@ const Pannel = ({handleLogout}) => {
     const [latitude, setlatitude] = useState("");
     const [longitude, setlongitude] = useState("");
     const [capacity, setcapacity] = useState("");
-    const [price, setPrice] = useState("");
+    const [pricePerMinute, setpricePerMinute] = useState("");
 
     const handleAddCarPark = () => {
 
@@ -45,7 +45,7 @@ const Pannel = ({handleLogout}) => {
                     name: name,
                     phone: phone,
                     used: 0,
-                    price: parseFloat(price)
+                    pricePerMinute: parseFloat(pricePerMinute)
                 };
             
                 fire.database().ref("CAR_PARKS/" + repo + "/" + repoNum).set(carpark);
@@ -137,8 +137,8 @@ const Pannel = ({handleLogout}) => {
                     autofocus
                     required
                     placeholder="Ücret (Dakika Başı)"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    value={pricePerMinute}
+                    onChange={(e) => setpricePerMinute(e.target.value)}
                 />
 
                 <button onClick={handleAddCarPark}>Ekle</button>
